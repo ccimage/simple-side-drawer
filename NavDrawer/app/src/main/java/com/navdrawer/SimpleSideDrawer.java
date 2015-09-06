@@ -38,8 +38,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import com.navdrawer.SideDrawCallback;
-
 /**
  * <p>This class enables to add a NavDrawer simply.</p>
  * <p>How to use:</p>
@@ -76,7 +74,7 @@ public class SimpleSideDrawer extends FrameLayout {
     private int mLeftBehindViewWidth;
     private int mRightBehindViewWidth;
     
-    private SideDrawCallback callback;
+    private SideDrawerCallback callback;
     
     private abstract class DragAction {
         private float mLastMotionX = 0f;
@@ -352,7 +350,7 @@ public class SimpleSideDrawer extends FrameLayout {
         int curX = -mLeftBehindViewWidth;//mAboveView.getScrollX();
         mScroller.startScroll(curX, 0, -curX, 0, mDurationLeft);
         invalidate();
-        if(callback){
+        if(callback!=null){
         	callback.onLeftDrawerClose();
         }
     }
@@ -365,7 +363,7 @@ public class SimpleSideDrawer extends FrameLayout {
         mScroller.startScroll(curX, 0, -curX, 0, mDurationRight);
         invalidate();
         
-        if(callback){
+        if(callback!=null){
         	callback.onRightDrawerClose();
         }
     }
@@ -389,7 +387,7 @@ public class SimpleSideDrawer extends FrameLayout {
         mScroller.startScroll(curX, 0, -mLeftBehindViewWidth, 0, mDurationLeft);
         invalidate();
         
-        if(callback){
+        if(callback!=null){
         	callback.onLeftDrawerOpen();
         }
     }
@@ -402,7 +400,7 @@ public class SimpleSideDrawer extends FrameLayout {
         mScroller.startScroll(curX, 0, mRightBehindViewWidth, 0, mDurationRight);
         invalidate();
         
-        if(callback){
+        if(callback!=null){
         	callback.onRightDrawerOpen();
         }
     }
@@ -556,6 +554,10 @@ public class SimpleSideDrawer extends FrameLayout {
                 }
             }
             return true;
+        }
+
+        public void setCallback(SideDrawerCallback cb){
+            callback = cb;
         }
     }
 }
