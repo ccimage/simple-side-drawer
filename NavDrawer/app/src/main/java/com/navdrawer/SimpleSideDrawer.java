@@ -555,9 +555,9 @@ public class SimpleSideDrawer extends FrameLayout {
             }
             return true;
         }
+    }
 
-        public void setCallback(SideDrawerCallback cb){
-            callback = cb;
-        }
+    public void setCallback(SideDrawerCallback cb){
+        callback = cb;
     }
 }
